@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>body{margin:0}*,*::before,*::after{box-sizing:border-box}</style>
+<title>ネットフリックスは不調なの?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Zen+Old+Mincho:wght@700&display=swap">
+<style>
+/* 縦一列の読み物。スマホで友達に見せる前提。大きな結論 → 3つの数字 → たとえ話 → 理由 → 出典 */
+:root{
+  --bg:#f6f7f9; --card:#ffffff; --fg:#1d2330; --muted:#5b6475; --line:#dde1e8;
+  --accent:#2f5bd3; --up:#1f8a5b; --down:#c2462f; --soft:#eaf0fd;
+  --display:"Zen Old Mincho","Hiragino Mincho ProN","Yu Mincho",serif;
+  --body:"Zen Kaku Gothic New","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --card:#1b2029; --fg:#e8ebf1; --muted:#9aa3b5; --line:#2c3340;
+  --accent:#7d9cf0; --up:#4cc38e; --down:#f07a63; --soft:#1f2a44; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --card:#1b2029; --fg:#e8ebf1; --muted:#9aa3b5; --line:#2c3340;
+  --accent:#7d9cf0; --up:#4cc38e; --down:#f07a63; --soft:#1f2a44; color-scheme:dark}
+
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.8}
+.wrap{max-width:640px;margin:0 auto;padding-block:32px 48px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:28px}
+h1,h2{text-wrap:balance;margin:0}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);margin:0 0 8px}
+h1{font-family:var(--display);font-size:clamp(28px,7vw,38px);line-height:1.35}
+.answer{background:var(--soft);border-radius:14px;padding:20px 22px;font-size:18px;font-weight:500;line-height:1.7}
+.answer strong{color:var(--accent)}
+h2{font-size:19px;font-weight:700;margin-bottom:12px}
+section p{margin:0}
+section p + p{margin-top:10px}
+
+.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.stat .k{font-size:12px;color:var(--muted);line-height:1.4}
+.stat .v{font-size:clamp(22px,6vw,28px);font-weight:900;line-height:1.2;font-variant-numeric:tabular-nums}
+.stat .s{font-size:12px;color:var(--muted);line-height:1.5}
+.up{color:var(--up)} .down{color:var(--down)}
+@media (max-width:420px){.stats{grid-template-columns:1fr}.stat{flex-direction:row;align-items:baseline;flex-wrap:wrap;gap:4px 10px}.stat .k{flex-basis:100%}}
+
+.bars{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+.bar{display:grid;grid-template-columns:5.5em 1fr 3.5em;align-items:center;gap:10px;font-size:14px}
+.track{height:12px;background:var(--line);border-radius:6px;overflow:hidden}
+.fill{height:100%;border-radius:6px;background:var(--muted)}
+.fill.now{background:var(--up)}
+.bar .n{font-variant-numeric:tabular-nums;text-align:right;font-weight:700}
+.note{font-size:13px;color:var(--muted)}
+
+.story{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.score{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin:12px 0;font-weight:700}
+.score span{background:var(--soft);border-radius:8px;padding:4px 12px;font-variant-numeric:tabular-nums}
+.score .arrow{background:none;padding:0;color:var(--muted)}
+
+ol.reasons{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+ol.reasons li{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+ol.reasons b{display:block;font-size:16px;margin-bottom:2px}
+ol.reasons span{font-size:14px;color:var(--muted)}
+
+.tag{display:inline-block;font-size:11px;letter-spacing:.06em;border:1px solid var(--line);color:var(--muted);border-radius:4px;padding:0 6px;margin-left:6px;vertical-align:2px;font-weight:500}
+.opinion{border-left:3px solid var(--accent);padding-left:14px}
+footer{font-size:12px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;line-height:1.7}
+footer a{color:var(--accent)}
+footer ul{margin:6px 0 0;padding-left:1.2em}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <header>
+    <p class="eyebrow">2026年10月の決算をかんたんに</p>
+    <h1>ネットフリックスは不調なの?</h1>
+  </header>
+
+  <div class="answer">
+    結論:<strong>会社のもうけは好調</strong>です。<br>
+    下がったのは<strong>株価</strong>のほう。理由は「これから先の見込み」が、みんなの期待より少し低かったからです。
+  </div>
+
+  <section>
+    <h2>3つの数字で見ると</h2>
+    <div class="stats">
+      <div class="stat"><span class="k">売上(7〜9月)</span><span class="v up">+12%</span><span class="s">前の年より増えた</span></div>
+      <div class="stat"><span class="k">利益率</span><span class="v up">34.6%</span><span class="s">前の年は28.2%</span></div>
+      <div class="stat"><span class="k">決算後の株価</span><span class="v down">約6%↓</span><span class="s">なのに下がった</span></div>
+    </div>
+    <div class="bars" aria-label="利益率の比較">
+      <div class="bar"><span>前の年</span><div class="track"><div class="fill" style="width:28.2%"></div></div><span class="n">28.2%</span></div>
+      <div class="bar"><span>今回</span><div class="track"><div class="fill now" style="width:34.6%"></div></div><span class="n">34.6%</span></div>
+    </div>
+    <p class="note" style="margin-top:8px">利益率=売上のうち、もうけとして残った割合。100円売って約35円残る計算です。</p>
+  </section>
+
+  <section class="story">
+    <h2>たとえるなら</h2>
+    <p>いつもテストで高得点の子が、「次は少し点が下がりそう」と言ったようなものです。</p>
+    <div class="score"><span>今回 90点</span><span class="arrow">→</span><span>次の予想 85点</span></div>
+    <p>85点でも十分すごい。でも周りは「次も90点以上」と思っていたので、がっかりされる。株価は<b>今の成績より「これからの期待」</b>で動くので、こういうことが起きます。</p>
+  </section>
+
+  <section>
+    <h2>期待に届かなかった3つのこと</h2>
+    <ol class="reasons">
+      <li><b>広告の売上の見込みを下げた</b><span>今年の見込みを約30億ドル → 約27億ドルに。広告つきの安いプランは、次の稼ぎ頭と期待されていました。</span></li>
+      <li><b>年末(10〜12月)の利益率は26%の見込み</b><span>人を減らすための費用がかかるため。今回の34.6%より低くなります。</span></li>
+      <li><b>次の売上・利益の見通しが、予想に届かなかった</b><span>伸びてはいるけれど、市場が思っていたほどではない、という受け止めです。</span></li>
+    </ol>
+  </section>
+
+  <section class="opinion">
+    <h2>まとめ<span class="tag">わたしの見方</span></h2>
+    <p>「人気なのに業績が悪い」のではなく、<b>「業績はいいけど、期待が大きすぎた」</b>というのが近いと思います。人気があって伸びている会社ほど、少しの減速で株価が大きく動きます。</p>
+  </section>
+
+  <footer>
+    数字はネットフリックスが2026年10月に出した決算資料(米国の証券取引委員会への提出書類)と、その報道によります。株価はその後も動いているので、最新の値は別に確かめてください。投資をすすめるものではありません。
+    <ul>
+      <li><a href="https://www.sec.gov/Archives/edgar/data/0001065280/000106528026000290/ex991_q326.htm">決算資料(2026年7〜9月期・SEC)</a></li>
+      <li><a href="https://deadline.com/2026/10/netflix-q3-2026-earnings-layoffs-streaming-1237168825/">Deadline の報道</a></li>
+      <li><a href="https://www.thestreet.com/investing/earnings/netflix-nflx-q3-2026-earnings-call-stock-forecast-updates">TheStreet の報道</a></li>
+    </ul>
+  </footer>
+</main>
+</body>
+</html>
